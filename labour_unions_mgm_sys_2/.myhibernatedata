@@ -1,0 +1,20 @@
+#MyEclipse Hibernate Properties
+#Mon Aug 10 13:53:13 CST 2015
+genBasicCompId=true
+sessionFactoryName=
+profile=
+daoSFId=
+jndiPath=
+detectM2M=true
+reStrategyClass=
+detectO2O=true
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=true
+reSettingsFile=/labour_unions_mgm_sys_2/hibernate.reveng.xml
+configFile=/labour_unions_mgm_sys_2/src/applicationContext.xml
+createConfigFile=true

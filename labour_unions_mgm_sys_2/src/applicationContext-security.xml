@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+                        >
+
+	<!-- <debug /> -->
+
+	<!-- 不要过滤图片等静态资源 -->
+	<http pattern="/**/*.js" security="none" />
+	<http pattern="/**/*.css" security="none" />
+	<http pattern="/**/*.jpg" security="none" />
+	<http pattern="/**/*.png" security="none" />
+	<http pattern="/**/*.gif" security="none" />
+	<!-- 登录页面和主页面不过滤 -->
+	<http pattern="/login.html" security="none" />
+	<http pattern="/main.jsp" security="none" />
+	<http pattern="/top.jsp" security="none" />
+	<http pattern="/welcome.jsp" security="none" />
+	<http pattern="/**/upload/**" security="none" />
+
+	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<!-- 各功能模块按角色过滤 暂不用，这是系统过滤器 -->
+		<!-- <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" 
+			/> -->
+		<logout />
+		<!-- 实现免登陆验证 -->
+		<remember-me />
+		<session-management invalid-session-url="/login.html">
+			<concurrency-control max-sessions="10"
+				error-if-maximum-exceeded="true" />
+		</session-management>
+
+		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
+		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+	</http>
+
+	<!-- 登录验证器 -->
+	<beans:bean id="loginFilter"
+		class="glut.security.MyUsernamePasswordAuthenticationFilter">
+		<!-- 处理登录 -->
+		<beans:property name="filterProcessesUrl" value="/j_spring_security_check"></beans:property>
+		<beans:property name="authenticationSuccessHandler"
+			ref="myAuthenticationHandler"></beans:property>
+		<beans:property name="authenticationFailureHandler"
+			ref="myAuthenticationHandler"></beans:property>
+		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
+
+		<beans:property name="usersDao" ref="usersDao"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="myAuthenticationHandler" class="glut.security.MyAuthenticationHandler">
+		<beans:property name="usersDao" ref="usersDao"></beans:property>
+	</beans:bean>
+
+
+	<!-- 认证过滤器 -->
+	<beans:bean id="securityFilter" class="glut.security.MySecurityFilter">
+		<!-- 用户拥有的权限 -->
+		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
+		<!-- 用户是否拥有所请求资源的权限 -->
+		<beans:property name="accessDecisionManager" ref="myAccessDecisionManager" />
+		<!-- 资源与权限对应关系 -->
+		<beans:property name="securityMetadataSource" ref="mySecurityMetadataSource" />
+	</beans:bean>
+	<!-- 实现了UserDetailsService的Bean -->
+	<authentication-manager alias="myAuthenticationManager">
+		<authentication-provider user-service-ref="myUserDetailServiceImpl" />
+	</authentication-manager>
+
+	<beans:bean id="myAccessDecisionManager" class="glut.security.MyAccessDecisionManager"></beans:bean>
+	<beans:bean id="mySecurityMetadataSource" class="glut.security.MySecurityMetadataSource">
+		<beans:constructor-arg name="resourcesDao" ref="resourcesDao"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="myUserDetailServiceImpl" class="glut.security.MyUserDetailServiceImpl">
+		<beans:property name="usersDao" ref="usersDao"></beans:property>
+	</beans:bean>
+
+	<!-- 未登录的切入点 -->
+	<beans:bean id="authenticationProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/login.html"></beans:property>
+	</beans:bean>
+
+</beans:beans>

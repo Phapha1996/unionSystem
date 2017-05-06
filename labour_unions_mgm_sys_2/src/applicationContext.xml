@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/ghserver?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull">
+		</property>
+		<property name="username" value="ghserver"></property>
+		<property name="password" value="ghdb357890"></property>
+		<property name="maxActive" value="1000"></property>
+		<property name="maxIdle" value="100"></property>
+		<property name="maxWait" value="10000"></property>
+		<property name="removeAbandoned" value="true"></property>
+		<property name="removeAbandonedTimeout" value="60"></property>
+		<property name="logAbandoned" value="true"></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">
+					false
+				</prop>
+				<prop key="current_session_context_class">thread</prop>
+				<prop key="javax.persistence.validation.mode">
+					none
+				</prop>
+				<prop key="connection.autoReconnect">
+					true
+				</prop>
+				<prop key="connection.autoReconnectForPools">
+					true
+				</prop>
+				<prop key="connection.is-connection-validation-required">
+					true
+				</prop>								
+			</props>
+		</property>
+		<property name="packagesToScan" value="glut.db.auto.*" />
+		<property name="mappingResources">
+			<list>
+				<value>glut/db/auto/Resources.hbm.xml</value>
+				<value>glut/db/auto/UsersRoles.hbm.xml</value>
+				<value>glut/db/auto/Roles.hbm.xml</value>
+				<value>glut/db/auto/RolesResources.hbm.xml</value>
+				<value>glut/db/auto/Users.hbm.xml</value>
+				<value>glut/db/auto/CmtMbAdv4Proposal.hbm.xml</value>
+				<value>glut/db/auto/Proposal.hbm.xml</value>
+				<value>glut/db/auto/Activity.hbm.xml</value>
+				<value>glut/db/auto/Member.hbm.xml</value>
+				<value>glut/db/auto/ActivitySignUp.hbm.xml</value>
+				<value>glut/db/auto/ActivityGroup.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<context:component-scan base-package="glut"
+		annotation-config="true">
+	</context:component-scan>
+	<!-- Dao -->
+	<bean id="usersDao" class="glut.security.dao.impl.UsersDaoImpl">
+	</bean>
+
+	<bean id="rolesDao" class="glut.security.dao.impl.RolesDaoImpl">
+	</bean>
+
+	<bean id="resourcesDao" class="glut.security.dao.impl.ResourcesDaoImpl">
+	</bean>
+	
+	<bean class="glut.util.MD5Utils">
+		<property name="useMD5" value="false"></property>
+	</bean>
+	<bean class="glut.util.Constants">
+		<property name="dirUpload" value="D://ghupload//"></property>
+		<property name="dirUploadVirtual" value="/gh/upload/"></property>
+		
+	</bean>
+	<bean id="RolesResourcesDAO"
+		class="glut.db.auto.RolesResourcesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CmtMbAdv4ProposalDAO"
+		class="glut.db.auto.CmtMbAdv4ProposalDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActivityGroupDAO" class="glut.db.auto.ActivityGroupDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DpmUnionDAO" class="glut.db.auto.DpmUnionDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MemberDAO" class="glut.db.auto.MemberDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActivitySignUpDAO"
+		class="glut.db.auto.ActivitySignUpDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ActivityDAO" class="glut.db.auto.ActivityDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UsersDAO" class="glut.db.auto.UsersDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ProposalDAO" class="glut.db.auto.ProposalDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="RolesDAO" class="glut.db.auto.RolesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="UsersRolesDAO" class="glut.db.auto.UsersRolesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ResourcesDAO" class="glut.db.auto.ResourcesDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

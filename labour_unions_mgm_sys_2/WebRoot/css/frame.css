@@ -1,0 +1,185 @@
+#main.container {margin:0 auto; width:100%;}
+#main.header { height:128px; background:#6cf; margin-bottom:5px;}
+#main.mainContent { margin-bottom:5px;}
+#main.sidebar { float:left; width:200px; height:500px; background:#9ff;}
+#main.content { float:right; width:695px; height:500px; background:#cff;}/*因为是固定宽度，采用左右浮动方法可有效避免ie 3像素bug*/
+.container {margin:0 auto; width:100%}
+.mainform {height:100%;width:100%;line-height:1px;overflow:hidden;text-align:center ; display: table-cell; vertical-align:middle;}
+.tipmsg { text-align:center; color:#0f0}
+.tipmsg_fail { text-align:center; color:#f00}
+.formcls {color:#000}
+
+HTML {
+	HEIGHT: 100%
+}
+BODY {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Helvetica, sans-serif; HEIGHT: 100%; FONT-SIZE: 12px; PADDING-TOP: 0px
+}
+A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+UL {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+#header {
+	POSITION: relative; MIN-WIDTH: 1002px; ; WIDTH: expression((document.documentElement.clientWidth||document.body.clientWidth) < 1002 ? "1002px" : "100%" ); BACKGROUND: url(../img/top_bg.jpg) repeat-x left top; HEIGHT: 128px
+}
+#header .header {
+	BACKGROUND: url(../img/top_right.jpg) no-repeat right top; HEIGHT: 128px
+}
+#logo {
+	BACKGROUND: url(../img/top_left.png) no-repeat left top; HEIGHT: 128px
+}
+#subMenu {
+	POSITION: absolute; TOP: 11px; RIGHT: 5px
+}
+#subMenu UL LI {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 15px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; ZOOM: 1; DISPLAY: inline; BACKGROUND: url(img/function_li.gif) no-repeat right center; PADDING-TOP: 0px
+}
+#subMenu A {
+	LETTER-SPACING: 1px; COLOR: #fff
+}
+#subMenu A:hover {
+	TEXT-DECORATION: underline
+}
+#nav {
+	Z-INDEX: 1; POSITION: relative; TEXT-ALIGN: center; HEIGHT: 28px; TOP: -44px
+}
+#nav UL LI {
+	ZOOM: 1; DISPLAY: inline; BACKGROUND: url(img/nav_li.gif) no-repeat right center
+}
+#nav UL LI A {
+	LINE-HEIGHT: 29px; PADDING-LEFT: 10px; DISPLAY: block; FLOAT: left; HEIGHT: 29px; FONT-SIZE: 12px; CURSOR: pointer; MARGIN-RIGHT: 3px
+}
+#nav UL LI A SPAN {
+	PADDING-RIGHT: 9px; DISPLAY: inline-block; LETTER-SPACING: 2px; HEIGHT: 29px; COLOR: #333; FONT-SIZE: 12px; CURSOR: pointer; FONT-WEIGHT: bold
+}
+#nav UL LI A.Thover {
+	LINE-HEIGHT: 29px; PADDING-LEFT: 10px; DISPLAY: block; HEIGHT: 29px; COLOR: #755aab; FONT-SIZE: 12px
+}
+#nav UL LI A.Thover SPAN {
+	DISPLAY: inline-block; LETTER-SPACING: 2px; COLOR: #cc6600; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#nav UL LI A:hover {
+	COLOR: #cc6600
+}
+#greeting {
+	POSITION: absolute; COLOR: #fff; TOP: 55px; RIGHT: 15px
+}
+#greeting SPAN {
+	COLOR: #fff; MARGIN-RIGHT: 10px
+}
+#footer {
+	TEXT-ALIGN: center; LINE-HEIGHT: 27px; BACKGROUND: url(img/foot_bg.jpg) repeat-x
+}
+DIV.foot {
+	BACKGROUND: url(img/foot_left.jpg) no-repeat left center
+}
+DIV.copyright {
+	BACKGROUND: url(img/foot_right.jpg) no-repeat right center; LETTER-SPACING: 1px; COLOR: #fff; FONT-SIZE: 12px
+}
+DIV.copyright A {
+	COLOR: #fff
+}
+DIV.copyright A:hover {
+	TEXT-DECORATION: underline
+}
+#header .topSidebar {
+	POSITION: absolute; WIDTH: 34px; TOP: 117px; RIGHT: 40%; MARGIN-RIGHT: 10px
+}
+#header .topSidebar A {
+	TEXT-INDENT: -9999px; OUTLINE-WIDTH: 0px; WIDTH: 34px; DISPLAY: block; BACKGROUND: url(img/sidebar_up.jpg) no-repeat; HEIGHT: 10px
+}
+#header .topSidebar_back A {
+	BACKGROUND-IMAGE: url(img/sidebar_down.jpg); OUTLINE-WIDTH: 0px
+}
+#header .topSidebar_back A:focus {
+	OUTLINE-WIDTH: 0px
+}
+#header .topSidebar A:focus {
+	OUTLINE-WIDTH: 0px
+}
+.nav_left {
+	POSITION: absolute; WIDTH: 541px; DISPLAY: none; BACKGROUND: url(img/nav_new.jpg) no-repeat; HEIGHT: 46px; TOP: 70px; LEFT: 0px
+}
+BODY.menuFrame {
+	TEXT-ALIGN: left; MIN-HEIGHT: 100%; BACKGROUND: url(img/menu_bg.jpg) #fff repeat-y left top; HEIGHT: 100%
+}
+.wrap {
+	WIDTH: 170px; HEIGHT: 100%
+}
+#date {
+	TEXT-ALIGN: center; BACKGROUND: url(img/menu_top.jpg) no-repeat left top; HEIGHT: 41px; COLOR: #fff
+}
+#date P {
+	PADDING-BOTTOM: 0px; TEXT-INDENT: -25px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+#date SPAN {
+	DISPLAY: block; FONT: bold 13px/180% '????'; COLOR: #ffcc00
+}
+#slideMenu {
+	HEIGHT: 93%; OVERFLOW: auto
+}
+#slideMenu .menuWrap {
+	HEIGHT: 100%
+}
+#slideMenu UL {
+	TEXT-ALIGN: left; MARGIN-TOP: 15px; OVERFLOW: hidden
+}
+#slideMenu UL LI {
+	_font-size: 0
+}
+#slideMenu UL LI A {
+	LINE-HEIGHT: 34px; DISPLAY: block; BACKGROUND: url(img/menu_border.jpg) no-repeat center bottom; FONT-SIZE: 12px
+}
+#slideMenu UL LI A:hover {
+	COLOR: #333
+}
+#slideMenu UL LI A.cur {
+	LINE-HEIGHT: 34px; DISPLAY: block; BACKGROUND: url(img/menu_libg.jpg) no-repeat left 0px
+}
+#slideMenu UL LI A.cur SPAN {
+	PADDING-LEFT: 10px; BACKGROUND: url(img/coin_1.gif) no-repeat left 13px; COLOR: #fff; MARGIN-LEFT: 20px
+}
+#slideMenu UL LI A SPAN {
+	TEXT-ALIGN: left; PADDING-LEFT: 25px; DISPLAY: block; LETTER-SPACING: 2px; COLOR: #003366; FONT-SIZE: 12px; FONT-WEIGHT: bold
+}
+#slideMenu UL LI UL {
+	BORDER-BOTTOM: #e5e5e5 1px solid; PADDING-BOTTOM: 10px; MARGIN: 0px; DISPLAY: none; BACKGROUND: url(img/ul_libg.jpg) #fff repeat-y; PADDING-TOP: 5px
+}
+#slideMenu UL LI UL LI {
+	LINE-HEIGHT: 0
+}
+#slideMenu UL LI UL LI A {
+	LINE-HEIGHT: 25px; PADDING-LEFT: 20px; BACKGROUND: none transparent scroll repeat 0% 0%; CURSOR: pointer
+}
+#slideMenu UL LI UL LI A:hover SPAN {
+	BACKGROUND: url(img/coin_12.gif) no-repeat left 11px
+}
+#slideMenu UL LI UL LI A SPAN {
+	PADDING-LEFT: 10px; BACKGROUND: url(img/coin_11.gif) no-repeat left 11px; COLOR: #386294
+}
+#slideMenu UL LI UL LI A.cur {
+	LINE-HEIGHT: 25px; BACKGROUND: none transparent scroll repeat 0% 0%; CURSOR: pointer
+}
+#slideMenu UL LI UL LI A.cur SPAN {
+	BACKGROUND: url(img/coin_12.gif) no-repeat left 11px; COLOR: #dc6423; MARGIN-LEFT: 0px; FONT-WEIGHT: normal
+}
+#slideMenu UL LI UL LI A SPAN {
+	DISPLAY: block; COLOR: #386294; FONT-WEIGHT: normal
+}
+#slideMenu UL LI UL LI A:hover SPAN {
+	COLOR: #dc6423
+}
+.sidebar {
+	
+}
+.sidebar A {
+	POSITION: fixed; TEXT-INDENT: -9999px; WIDTH: 8px; DISPLAY: block; BACKGROUND: url(img/sidebar_back.jpg) no-repeat; HEIGHT: 59px; OVERFLOW: hidden; TOP: 50%; LEFT: 171px; _position: absolute
+}
+.sidebar A.back {
+	BACKGROUND-IMAGE: url(img/sidebar_btn.jpg)
+}
+.sidebar A:focus {
+	OUTLINE-WIDTH: 0px
+}

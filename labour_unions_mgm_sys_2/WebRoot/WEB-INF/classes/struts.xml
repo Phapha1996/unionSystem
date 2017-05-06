@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="false"></constant>
+
+	<!-- 活动子系统-管理员 act:activty -->
+	<package name="admin_act" namespace="/sys_act" extends="json-default">
+		<action name="adminAction_act_*" class="adminAction_act"
+			method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+	<!-- 活动子系统-会员 act:activty -->
+	<package name="user_act" namespace="/sys_act" extends="json-default">
+		<action name="userAction_act_*" class="userAction_act" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+	<!-- 会员子系统 mb:member -->
+	<package name="admin_mb" namespace="/sys_mb" extends="json-default">
+		<action name="adminAction_mb_*" class="adminAction_mb" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+	<!-- 提案子系统-代表pro|pps:proposal dlg:delegate -->
+	<package name="pro_dlg" namespace="/sys_pro_dlg" extends="json-default">
+		<action name="userAction_pro_*" class="userAction_pro" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+	<!-- 提案子系统-委员 pro|pps:proposal cmt:committee -->
+	<package name="pro_cmt" namespace="/sys_pro_cmt" extends="json-default">
+		<action name="userAction_pro_*" class="userAction_pro" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+	<!-- 提案子系统-部门 pro|pps:proposal dpm:department -->
+	<package name="pro_dpm" namespace="/sys_pro_dpm" extends="json-default">
+		<action name="userAction_pro_*" class="userAction_pro" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+	<!-- 提案子系统-校领导 pro|pps:proposal -->
+	<package name="pro_leader" namespace="/sys_pro_leader" extends="json-default">
+		<action name="userAction_pro_*" class="userAction_pro" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<!-- add by leo :20151220 提案子系统-数据统计:stat:statictis -->
+	<package name="pro_stat" namespace="/sys_pro_stat" extends="json-default">
+		<action name="userAction_pro_stat_*" class="userAction_pro_stat"
+			method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+	<!-- 共有的功能,如：修改密码 -->
+	<package name="common" namespace="/common" extends="json-default">
+		<action name="baseAction_*" class="baseAction" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+
+
+</struts>    

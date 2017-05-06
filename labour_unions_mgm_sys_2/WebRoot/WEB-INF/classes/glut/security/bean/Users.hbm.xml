@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 
+   该文件不再使用。由于在Hibernate逆向工程中无法自动生成many to one映射
+   因此保留下来供参考。见下：member的many to one映射配置
+-->
+<hibernate-mapping>
+    <class name="glut.security.bean.Users" table="users" catalog="ghserver">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="enable" type="java.lang.Integer">
+            <column name="enable" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <many-to-one name="member" class="glut.db.auto.Member" fetch="select">
+            <column name="account" length="20" not-null="true" />
+        </many-to-one>
+        <set name="usersRoleses" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="glut.security.bean.UsersRoles" />
+        </set>
+    </class>
+</hibernate-mapping>
